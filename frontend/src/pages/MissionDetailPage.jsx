@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom'
 import CodeEditor from '../components/CodeEditor'
 import TerminalView from '../components/TerminalView'
 import LogViewer from '../components/LogViewer'
+import getApiUrl from '../utils/api'
 
 function MissionDetailPage({ progress, onComplete }) {
     const { missionId } = useParams()
@@ -17,7 +18,7 @@ function MissionDetailPage({ progress, onComplete }) {
 
     const fetchMission = async () => {
         try {
-            const response = await fetch(`/api/missions/${missionId}`)
+            const response = await fetch(getApiUrl(`/api/missions/${missionId}`))
             if (response.ok) {
                 const data = await response.json()
                 setMission(data)
@@ -45,7 +46,7 @@ function MissionDetailPage({ progress, onComplete }) {
         try {
             const endpoint = mission.language === 'bash' ? '/api/run/bash' : mission.language === 'lucene' ? '/api/search/logs' : '/api/run/python'
             const body = mission.language === 'lucene' ? { query: code, mission_id: missionId } : { code, mission_id: missionId }
-            const response = await fetch(endpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+            const response = await fetch(getApiUrl(endpoint), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
             if (response.ok) {
                 const data = await response.json()
                 setResult(data)

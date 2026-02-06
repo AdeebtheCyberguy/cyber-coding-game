@@ -4,6 +4,8 @@ import HomePage from './pages/HomePage'
 import MissionListPage from './pages/MissionListPage'
 import MissionDetailPage from './pages/MissionDetailPage'
 
+import getApiUrl from './utils/api'
+
 /**
  * Main Application Component
  * 
@@ -32,7 +34,7 @@ function App() {
 
     const fetchProgress = async () => {
         try {
-            const response = await fetch('/api/progress')
+            const response = await fetch(getApiUrl('/api/progress'))
             if (response.ok) {
                 const data = await response.json()
                 setProgress({

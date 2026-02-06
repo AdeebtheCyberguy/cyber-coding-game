@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import MissionCard from '../components/MissionCard'
+import getApiUrl from '../utils/api'
 
 function MissionListPage({ progress }) {
     const [missions, setMissions] = useState([])
@@ -10,7 +11,7 @@ function MissionListPage({ progress }) {
 
     const fetchMissions = async () => {
         try {
-            const response = await fetch('/api/missions')
+            const response = await fetch(getApiUrl('/api/missions'))
             if (response.ok) {
                 const data = await response.json()
                 setMissions(data.missions)
