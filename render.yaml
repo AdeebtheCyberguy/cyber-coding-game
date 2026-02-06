@@ -1,3 +1,20 @@
+staticSites:
+  # ------------------------------------
+  # ⚛️ FRONTEND (Static Site)
+  # ------------------------------------
+  - name: cyber-game-frontend
+    buildCommand: |
+      cd frontend
+      npm install
+      npm run build
+    publishPath: frontend/dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: cyber-game-backend
+          property: url
+
 services:
   # ------------------------------------
   # 🐍 BACKEND (Python FastAPI)
@@ -16,23 +33,3 @@ services:
     envVars:
       - key: PYTHON_VERSION
         value: 3.9.0
-
-  # ------------------------------------
-  # ⚛️ FRONTEND (Consumer - Static Site)
-  # ------------------------------------
-  - type: static
-    name: cyber-game-frontend
-    env: static
-    region: ohio
-    plan: free
-    buildCommand: |
-      cd frontend
-      npm install
-      npm run build
-    staticPublishPath: frontend/dist
-    envVars:
-      - key: VITE_API_URL
-        fromService:
-          type: web
-          name: cyber-game-backend
-          property: url
