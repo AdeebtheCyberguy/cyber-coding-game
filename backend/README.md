@@ -7,7 +7,7 @@ This is the Python backend that powers the Cyber Coding Game. It provides APIs f
 ## 🛡️ Security Notice
 
 > ⚠️ **This backend does NOT execute real user code!**
-> 
+>
 > All "code execution" is **simulated** for educational purposes. The sandbox services use pattern matching and pre-defined outputs — they never call `eval()`, `exec()`, or run real shell commands.
 
 ---
@@ -49,8 +49,9 @@ The API will be available at: `http://localhost:8000`
 ### 4. View API Documentation
 
 FastAPI automatically creates docs! Visit:
-- **Swagger UI:** http://localhost:8000/docs
-- **ReDoc:** http://localhost:8000/redoc
+
+- **Swagger UI:** <http://localhost:8000/docs>
+- **ReDoc:** <http://localhost:8000/redoc>
 
 ---
 
@@ -134,19 +135,24 @@ SECRET_KEY=your-local-dev-secret-key
 ## 🆘 Troubleshooting
 
 ### "Module not found"
+
 Make sure your virtual environment is activated:
+
 ```powershell
 .\venv\Scripts\Activate  # Windows
 source venv/bin/activate  # Linux/Mac
 ```
 
 ### "Port already in use"
+
 Use a different port:
+
 ```bash
 python -m uvicorn app.main:app --reload --port 8001
 ```
 
 ### "UnicodeDecodeError on Windows"
+
 Make sure your files are saved as UTF-8.
 
 ---
